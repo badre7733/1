@@ -2,7 +2,7 @@
 // CONFIGURACIÓN DE PAGOS - MERCADO PAGO
 // =====================================================
 // Cuando Agale te pase el link de pago, pégalo aquí entre las comillas:
-const MERCADOPAGO_LINK = "";
+const MERCADOPAGO_LINK = "https://link.mercadopago.com.co/agale";
 // Ejemplo: const MERCADOPAGO_LINK = "https://mpago.la/xxxxx";
 // =====================================================
 

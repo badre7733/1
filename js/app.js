@@ -2,7 +2,7 @@
 // CONFIGURACIÓN DE PAGOS - MERCADO PAGO
 // =====================================================
 // Cuando Agale te pase el link de pago, pégalo aquí entre las comillas:
-const MERCADOPAGO_LINK = "https://mpago.la/agale";
+const MERCADOPAGO_LINK = "https://bold.co/pagos-en-linea/pasarela-de-pagos?utm_source=google&utm_medium=cpc&utm_campaign={campaign}&utm_content=158342019285&utm_term=pasarela%20de%20pago&gad_source=1&gad_campaignid=21099509655&gbraid=0AAAAACnKeuhSQNBUBwz2EY6tB8YvE7OFW&gclid=Cj0KCQjwhsrUBhDxARIsAN3AQSffEq1D8R6riAA2CRB9sp4fEAycrbDSvAUOHgTQ3ea7oqSLYV97SUMaAg_pEALw_wcB";
 // Ejemplo: const MERCADOPAGO_LINK = "https://mpago.la/xxxxx";
 // =====================================================
 

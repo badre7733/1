@@ -389,7 +389,31 @@ async function submitCheckout(e) {
 
 // Mantiene el nombre de la función que ya utiliza el botón de pago.
 function checkout() {
-  openCheckout();
+  if (cart.length === 0) {
+    showToast('El carrito está vacío', 'error');
+    return;
+  }
+
+  const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
+
+  document.getElementById('checkoutOrder').value =
+    cart.map(c => `${c.qty}x ${c.title}`).join('\n');
+
+  document.getElementById('checkoutTotal').value =
+    formatPrice(total);
+
+  document.getElementById('checkoutSummary').innerHTML =
+    `<div class="checkout-summary">
+      <strong>Resumen del pedido</strong><br>
+      ${cart.map(c => `${c.qty} × ${c.title} — ${formatPrice(c.price * c.qty)}`).join('<br>')}
+      <br><br>
+      <strong>Total: ${formatPrice(total)}</strong>
+    </div>`;
+
+  // Después de enviar el formulario, vuelve a tu enlace de Mercado Pago
+  document.getElementById('checkoutNext').value = MERCADOPAGO_LINK;
+
+  openModal('checkoutModal');
 }
 
 // ===== AUTH =====

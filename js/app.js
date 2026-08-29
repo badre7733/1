@@ -3,7 +3,7 @@
 // =====================================================
 // Checkout
 const MP_API_URL = "/api/create-preference";
-const MP_USE_SANDBOX = true;  // pruebas
+const MP_USE_SANDBOX = false; 
 const MERCADOPAGO_LINK = "";
 // Ejemplo: const MERCADOPAGO_LINK = "https://mpago.la/xxxxx";
 // =====================================================

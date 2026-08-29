@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agale Colombia | Marketplace y Dropshipping</title>
+  <meta name="description" content="Agale Colombia - Compra y vende productos en línea. Marketplace multi-vendedor con dropshipping. Envíos a todo Colombia. Bogotá D.C.">
+  <meta name="keywords" content="Agale, marketplace Colombia, dropshipping Bogotá, comprar online Colombia, vender productos">
+  <link rel="icon" type="image/png" href="img/logo-agale.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-top">
+      <div class="container">
+        <span><i class="fas fa-truck"></i> Envíos a todo Colombia · Pago contra entrega disponible</span>
+        <div class="header-top-links">
+          <a href="mailto:agalecolombia@gmail.com"><i class="fas fa-envelope"></i> agalecolombia@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="header-main">
+      <div class="container">
+        <a href="#" class="logo" onclick="showSection('home')" title="Agale Colombia">
+          <img src="img/logo-agale.png" alt="Agale Colombia" class="logo-img">
+        </a>
+        <div class="search-bar">
+          <input type="text" id="searchInput" placeholder="Buscar productos, marcas y más...">
+          <button onclick="searchProducts()" aria-label="Buscar"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="header-actions">
+          <button class="btn-icon" onclick="toggleCart()" title="Carrito">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="badge" id="cartCount">0</span>
+          </button>
+          <button class="btn-icon" id="userBtn" onclick="toggleUserMenu()">
+            <i class="fas fa-user"></i>
+            <span id="userName">Ingresar</span>
+          </button>
+          <button class="btn-primary" onclick="showSection('vender')">
+            <i class="fas fa-plus-circle"></i> <span class="btn-text-hide">Vender</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <nav class="nav-categories">
+      <div class="container">
+        <button class="cat-btn active" data-cat="all" onclick="filterCategory('all')">Todos</button>
+        <button class="cat-btn" data-cat="tecnologia" onclick="filterCategory('tecnologia')">Tecnología</button>
+        <button class="cat-btn" data-cat="moda" onclick="filterCategory('moda')">Moda</button>
+        <button class="cat-btn" data-cat="hogar" onclick="filterCategory('hogar')">Hogar</button>
+        <button class="cat-btn" data-cat="belleza" onclick="filterCategory('belleza')">Belleza</button>
+        <button class="cat-btn" data-cat="deportes" onclick="filterCategory('deportes')">Deportes</button>
+        <button class="cat-btn" data-cat="accesorios" onclick="filterCategory('accesorios')">Accesorios</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- USER MENU -->
+  <div class="user-menu" id="userMenu">
+    <div id="loggedOutMenu">
+      <button onclick="openModal('loginModal')"><i class="fas fa-sign-in-alt"></i> Iniciar sesión</button>
+      <button onclick="openModal('registerModal')"><i class="fas fa-user-plus"></i> Crear cuenta</button>
+    </div>
+    <div id="loggedInMenu" style="display:none;">
+      <button onclick="showSection('mis-productos')"><i class="fas fa-box"></i> Mis productos</button>
+      <button onclick="showSection('vender')"><i class="fas fa-plus"></i> Publicar producto</button>
+      <button onclick="showSection('pedidos')"><i class="fas fa-receipt"></i> Mis pedidos</button>
+      <button onclick="logout()"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</button>
+    </div>
+  </div>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3><i class="fas fa-shopping-cart"></i> Tu carrito</h3>
+      <button onclick="toggleCart()" aria-label="Cerrar"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <strong id="cartTotal">$0</strong>
+      </div>
+      <button class="btn-primary btn-block" onclick="openCheckout()"><i class="fas fa-credit-card"></i> Pagar con Mercado Pago</button>
+      <p class="cart-note"><i class="fas fa-lock"></i> Pago seguro con Mercado Pago</p>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+    <!-- HOME -->
+    <section id="home" class="section active">
+      <div class="hero">
+        <div class="container hero-content">
+          <div class="hero-text">
+            <h1>Compra y vende en Colombia<br><span>fácil, rápido y seguro</span></h1>
+            <p>Marketplace multi-vendedor con dropshipping. Conecta con proveedores locales, vende sin inventario y llega a todo el país con pago contra entrega.</p>
+            <div class="hero-btns">
+              <button class="btn-primary btn-lg" onclick="showSection('productos')">Explorar productos</button>
+              <button class="btn-outline btn-lg" onclick="showSection('vender')">Empezar a vender</button>
+            </div>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <strong>+12.000</strong>
+              <span>Productos</span>
+            </div>
+            <div class="stat">
+              <strong>+850</strong>
+              <span>Vendedores</span>
+            </div>
+            <div class="stat">
+              <strong>24-72h</strong>
+              <span>Envíos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container section-pad">
+        <h2 class="section-title">¿Cómo funciona Agale?</h2>
+        <div class="how-grid">
+          <div class="how-card">
+            <div class="how-icon"><i class="fas fa-user-plus"></i></div>
+            <h3>1. Crea tu cuenta</h3>
+            <p>Regístrate gratis como comprador o vendedor en minutos.</p>
+          </div>
+          <div class="how-card">
+            <div class="how-icon"><i class="fas fa-link"></i></div>
+            <h3>2. Conecta proveedores</h3>
+            <p>Vincula Dropi, Chipi, Mastershop y más para dropshipping automático.</p>
+          </div>
+          <div class="how-card">
+            <div class="how-icon"><i class="fas fa-box-open"></i></div>
+            <h3>3. Publica productos</h3>
+            <p>Importa del catálogo de proveedores o sube tus propios productos.</p>
+          </div>
+          <div class="how-card">
+            <div class="how-icon"><i class="fas fa-truck"></i></div>
+            <h3>4. Vende y envía</h3>
+            <p>El proveedor prepara y envía. Tú gestionas ventas y márgenes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container section-pad">
+        <div class="section-header">
+          <h2 class="section-title">Productos destacados</h2>
+          <button class="btn-text" onclick="showSection('productos')">Ver todos <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div class="products-grid" id="featuredProducts"></div>
+      </div>
+
+      <div class="container section-pad" id="proveedores">
+        <h2 class="section-title">Proveedores de Dropshipping</h2>
+        <p class="section-subtitle">Conecta tu tienda con las mejores plataformas de Colombia y vende sin stock propio.</p>
+        <div class="providers-grid">
+          <div class="provider-card">
+            <div class="provider-logo dropi">Dropi</div>
+            <h4>Dropi</h4>
+            <p>Líder en LATAM. +160.000 productos, envíos 24-72h, pago contra entrega.</p>
+            <button class="btn-outline btn-sm" onclick="connectProvider('Dropi')">Conectar</button>
+          </div>
+          <div class="provider-card">
+            <div class="provider-logo chipi">Chipi</div>
+            <h4>Chipi</h4>
+            <p>Fletes competitivos y comisiones bajas según volumen. Ideal para nacionales.</p>
+            <button class="btn-outline btn-sm" onclick="connectProvider('Chipi')">Conectar</button>
+          </div>
+          <div class="provider-card">
+            <div class="provider-logo master">Mastershop</div>
+            <h4>Mastershop</h4>
+            <p>Productos de calidad y proveedores de alto desempeño para escalar.</p>
+            <button class="btn-outline btn-sm" onclick="connectProvider('Mastershop')">Conectar</button>
+          </div>
+          <div class="provider-card">
+            <div class="provider-logo efi">Effi</div>
+            <h4>Effi / Efficommerce</h4>
+            <p>Automatización avanzada, métricas y soporte personalizado.</p>
+            <button class="btn-outline btn-sm" onclick="connectProvider('Effi')">Conectar</button>
+          </div>
+          <div class="provider-card">
+            <div class="provider-logo hoko">Hoko</div>
+            <h4>Hoko</h4>
+            <p>Propuesta comercial clara y tarifas transparentes de envío.</p>
+            <button class="btn-outline btn-sm" onclick="connectProvider('Hoko')">Conectar</button>
+          </div>
+          <div class="provider-card">
+            <div class="provider-logo other">Más</div>
+            <h4>Otros proveedores</h4>
+            <p>Triidy, Venndelo, Ultralogi, Flipcat y catálogos internacionales.</p>
+            <button class="btn-outline btn-sm" onclick="connectProvider('Otros')">Ver todos</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT / ABOUT STRIP -->
+      <div class="contact-strip">
+        <div class="container">
+          <div class="contact-grid">
+            <div>
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <strong>Ubicación</strong>
+                <p>Carrera 87N #59C sur 83<br>Barrio Bosa La Libertad, Bogotá D.C.</p>
+              </div>
+            </div>
+            <div>
+              <i class="fas fa-envelope"></i>
+              <div>
+                <strong>Correo</strong>
+                <p><a href="mailto:agalecolombia@gmail.com">agalecolombia@gmail.com</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTOS -->
+    <section id="productos" class="section">
+      <div class="container section-pad">
+        <div class="products-header">
+          <h2 class="section-title">Todos los productos</h2>
+          <div class="filters">
+            <select id="sortSelect" onchange="sortProducts()">
+              <option value="relevant">Más relevantes</option>
+              <option value="price-asc">Menor precio</option>
+              <option value="price-desc">Mayor precio</option>
+              <option value="newest">Más recientes</option>
+            </select>
+          </div>
+        </div>
+        <div class="products-grid" id="allProducts"></div>
+      </div>
+    </section>
+
+    <!-- VENDER -->
+    <section id="vender" class="section">
+      <div class="container section-pad">
+        <h2 class="section-title">Publica tu producto</h2>
+        <p class="section-subtitle">Vende tus propios productos o importa desde proveedores de dropshipping.</p>
+        
+        <div class="seller-tabs">
+          <button class="tab active" onclick="switchSellerTab('manual')">Publicar manualmente</button>
+          <button class="tab" onclick="switchSellerTab('import')">Importar de proveedor</button>
+        </div>
+
+        <div id="manualTab" class="seller-form-card">
+          <form id="productForm" onsubmit="addProduct(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Título del producto *</label>
+                <input type="text" id="prodTitle" required placeholder="Ej: Audífonos Bluetooth TWS">
+              </div>
+              <div class="form-group">
+                <label>Categoría *</label>
+                <select id="prodCategory" required>
+                  <option value="">Selecciona</option>
+                  <option value="tecnologia">Tecnología</option>
+                  <option value="moda">Moda</option>
+                  <option value="hogar">Hogar</option>
+                  <option value="belleza">Belleza</option>
+                  <option value="deportes">Deportes</option>
+                  <option value="accesorios">Accesorios</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Precio (COP) *</label>
+                <input type="number" id="prodPrice" required min="1000" placeholder="89900">
+              </div>
+              <div class="form-group">
+                <label>Precio anterior (opcional)</label>
+                <input type="number" id="prodOldPrice" min="0" placeholder="129900">
+              </div>
+              <div class="form-group">
+                <label>Stock *</label>
+                <input type="number" id="prodStock" required min="0" value="10">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Descripción *</label>
+              <textarea id="prodDesc" required rows="4" placeholder="Describe tu producto..."></textarea>
+            </div>
+            <div class="form-group">
+              <label>URL de imagen</label>
+              <input type="url" id="prodImage" placeholder="https://...">
+            </div>
+            <div class="form-group">
+              <label>
+                <input type="checkbox" id="prodDropship"> Es producto de dropshipping (sin inventario propio)
+              </label>
+            </div>
+            <button type="submit" class="btn-primary btn-lg">Publicar producto</button>
+          </form>
+        </div>
+
+        <div id="importTab" class="seller-form-card" style="display:none;">
+          <p>Selecciona un proveedor conectado para importar productos de su catálogo.</p>
+          <div class="import-providers">
+            <button class="btn-outline" onclick="importFromProvider('Dropi')"><i class="fas fa-download"></i> Importar desde Dropi</button>
+            <button class="btn-outline" onclick="importFromProvider('Chipi')"><i class="fas fa-download"></i> Importar desde Chipi</button>
+            <button class="btn-outline" onclick="importFromProvider('Mastershop')"><i class="fas fa-download"></i> Importar desde Mastershop</button>
+          </div>
+          <div id="importResults" class="import-results"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MIS PRODUCTOS -->
+    <section id="mis-productos" class="section">
+      <div class="container section-pad">
+        <h2 class="section-title">Mis productos publicados</h2>
+        <div class="products-grid" id="myProducts"></div>
+        <p id="noMyProducts" class="empty-msg" style="display:none;">Aún no has publicado productos. <a href="#" onclick="showSection('vender')">Publica el primero</a></p>
+      </div>
+    </section>
+
+    <!-- PEDIDOS -->
+    <section id="pedidos" class="section">
+      <div class="container section-pad">
+        <h2 class="section-title">Mis pedidos</h2>
+        <div id="ordersList"></div>
+        <p id="noOrders" class="empty-msg">No tienes pedidos aún.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img src="img/logo-agale.png" alt="Agale Colombia" class="footer-logo-img">
+          <p>Marketplace multi-vendedor con dropshipping nativo para Colombia. Compra y vende fácil, con envíos rápidos y pago contra entrega.</p>
+          <div class="footer-social">
+            <a href="mailto:agalecolombia@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4>Comprar</h4>
+          <a href="#" onclick="showSection('productos')">Todos los productos</a>
+          <a href="#">Ofertas</a>
+          <a href="#">Categorías</a>
+        </div>
+        <div>
+          <h4>Vender</h4>
+          <a href="#" onclick="showSection('vender')">Publicar producto</a>
+          <a href="#proveedores">Conectar proveedores</a>
+          <a href="#">Comisiones</a>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <p class="footer-contact">
+            <i class="fas fa-map-marker-alt"></i> Carrera 87N #59C sur 83<br>
+            Barrio Bosa La Libertad<br>
+            Bogotá D.C., Colombia
+          </p>
+          <p class="footer-contact">
+            <i class="fas fa-envelope"></i> <a href="mailto:agalecolombia@gmail.com">agalecolombia@gmail.com</a>
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Agale Colombia · Todos los derechos reservados · Bogotá D.C.</p>
+      </div>
+    </div>
+  </footer><!-- MODALS -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('loginModal')"><i class="fas fa-times"></i></button>
+      <h2>Iniciar sesión</h2>
+      <form onsubmit="login(event)">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="loginEmail" required placeholder="tu@email.com">
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" id="loginPass" required>
+        </div>
+        <button type="submit" class="btn-primary btn-block">Entrar</button>
+      </form>
+      <p class="modal-footer">¿No tienes cuenta? <a href="#" onclick="closeModal('loginModal');openModal('registerModal')">Regístrate</a></p>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="registerModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('registerModal')"><i class="fas fa-times"></i></button>
+      <h2>Crear cuenta</h2>
+      <form onsubmit="register(event)">
+        <div class="form-group">
+          <label>Nombre completo</label>
+          <input type="text" id="regName" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="regEmail" required>
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" id="regPass" required minlength="6">
+        </div>
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="regSeller"> Quiero vender productos
+          </label>
+        </div>
+        <button type="submit" class="btn-primary btn-block">Crear cuenta</button>
+      </form>
+      <p class="modal-footer">¿Ya tienes cuenta? <a href="#" onclick="closeModal('registerModal');openModal('loginModal')">Inicia sesión</a></p>
+    </div>
+  </div>
+
+
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal modal-lg">
+      <button class="modal-close" onclick="closeModal('checkoutModal')" aria-label="Cerrar"><i class="fas fa-times"></i></button>
+      <h2>Datos de envío</h2>
+      <p>Completa tus datos para continuar al pago seguro con Mercado Pago.</p>
+      <form id="checkoutForm" onsubmit="submitCheckout(event)">
+        <div class="form-row">
+          <div class="form-group"><label for="checkoutName">Nombre completo *</label><input type="text" id="checkoutName" required autocomplete="name"></div>
+          <div class="form-group"><label for="checkoutEmail">Correo electrónico *</label><input type="email" id="checkoutEmail" required autocomplete="email"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label for="checkoutPhone">Teléfono *</label><input type="tel" id="checkoutPhone" required autocomplete="tel"></div>
+          <div class="form-group"><label for="checkoutDocument">Documento de identidad</label><input type="text" id="checkoutDocument"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label for="checkoutAddress">Dirección de envío *</label><input type="text" id="checkoutAddress" required autocomplete="street-address"></div>
+          <div class="form-group"><label for="checkoutCity">Ciudad *</label><input type="text" id="checkoutCity" required autocomplete="address-level2"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label for="checkoutDepartment">Departamento *</label><input type="text" id="checkoutDepartment" required autocomplete="address-level1"></div>
+          <div class="form-group"><label for="checkoutPostal">Código postal</label><input type="text" id="checkoutPostal" autocomplete="postal-code"></div>
+        </div>
+        <div class="form-group"><label for="checkoutNotes">Indicaciones para la entrega</label><textarea id="checkoutNotes" rows="3" placeholder="Apartamento, conjunto, referencias, etc. (opcional)"></textarea></div>
+        <div id="checkoutSummary" style="background:#f8fafc;padding:14px;border-radius:10px;margin:14px 0"></div>
+        <button type="submit" class="btn-primary btn-block btn-lg" id="checkoutSubmit"><i class="fas fa-credit-card"></i> Continuar al pago</button>
+        <p class="cart-note"><i class="fas fa-lock"></i> Serás redirigido a Mercado Pago para completar el pago.</p>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="productModal">
+    <div class="modal modal-lg">
+      <button class="modal-close" onclick="closeModal('productModal')"><i class="fas fa-times"></i></button>
+      <div class="product-detail" id="productDetail"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

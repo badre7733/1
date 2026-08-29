@@ -381,6 +381,76 @@
       </div>
     </div>
   </footer>
+<!-- FORMULARIO DE PEDIDO -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('checkoutModal')">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <h2>Datos de envío</h2>
+    <p class="modal-subtitle">Completa tus datos para continuar con el pago.</p>
+
+    <form action="https://formsubmit.co/agalecolombia@gmail.com"
+          method="POST"
+          id="checkoutForm">
+
+      <input type="hidden" name="_subject" value="Nuevo pedido - Agale Colombia">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" id="checkoutNext">
+
+      <div class="form-group">
+        <label>Nombre completo *</label>
+        <input type="text" name="Nombre" required placeholder="Tu nombre">
+      </div>
+
+      <div class="form-group">
+        <label>Email *</label>
+        <input type="email" name="Email" required placeholder="tu@email.com">
+      </div>
+
+      <div class="form-group">
+        <label>Teléfono *</label>
+        <input type="tel" name="Teléfono" required placeholder="300 000 0000">
+      </div>
+
+      <div class="form-group">
+        <label>Dirección de envío *</label>
+        <input type="text" name="Dirección" required placeholder="Calle, carrera, número, apartamento...">
+      </div>
+
+      <div class="form-group">
+        <label>Ciudad *</label>
+        <input type="text" name="Ciudad" required placeholder="Bogotá">
+      </div>
+
+      <div class="form-group">
+        <label>Departamento *</label>
+        <input type="text" name="Departamento" required placeholder="Bogotá D.C.">
+      </div>
+
+      <div class="form-group">
+        <label>Indicaciones de entrega</label>
+        <textarea name="Indicaciones" rows="3"
+          placeholder="Apartamento, conjunto, referencias, etc."></textarea>
+      </div>
+
+      <input type="hidden" name="Pedido" id="checkoutOrder">
+      <input type="hidden" name="Total" id="checkoutTotal">
+
+      <div id="checkoutSummary"></div>
+
+      <button type="submit" class="btn-primary btn-block">
+        <i class="fas fa-credit-card"></i> Continuar al pago
+      </button>
+
+      <p class="cart-note">
+        <i class="fas fa-lock"></i>
+        Tus datos se enviarán para gestionar el pedido.
+      </p>
+    </form>
+  </div>
+</div>
 
   <!-- MODALS -->
   <div class="modal-overlay" id="checkoutModal">
